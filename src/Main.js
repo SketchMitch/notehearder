@@ -9,7 +9,11 @@ class Main extends React.Component {
             super()
             this.state = {
                
-                currentNote: null,
+                currentNote:{
+                    id: null,
+                    title: '',
+                    body: '',
+                },
                 notes: [
                     {
                         id: 1,
@@ -43,7 +47,7 @@ setCurrentNote = (note) => {
                     notes={this.state.notes} 
                     setCurrentNote={this.setCurrentNote}
                 />
-                <NoteForm />
+                <NoteForm currentNote={this.state.currentNote} />
             </div>
         )
     }
