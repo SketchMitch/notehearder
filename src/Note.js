@@ -3,7 +3,7 @@ import React from 'react'
 const Note = (props) => {
     return (
         <li className="Note"
-        onClick={() => console.log(props.note.title)}
+        onClick={() => props.setCurrentNote(props.note)}
         >
             <div className="note">
                 <div className="note-title">
