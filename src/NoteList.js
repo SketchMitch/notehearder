@@ -27,7 +27,7 @@ const NoteList = () => {
                 <ul id="notes">
                     <a className="active">
                         {
-                            notes.map(note => <Note note={note} />)}
+                            notes.map(note => <Note key={note.id} note={note} />)}
                         }
                     </a>
                 </ul>
