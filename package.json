@@ -1,7 +1,7 @@
 {
   "name": "notehearder",
   "version": "0.1.0",
-  "homepage": "https://SketchMitch.github.io/notehearder",
+  "homepage": "https://sketchmitch.github.io/notehearder/",
   "private": true,
   "dependencies": {
     "aphrodite": "^2.2.2",
