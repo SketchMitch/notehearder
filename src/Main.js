@@ -3,29 +3,14 @@ import React from 'react'
 import Sidebar from './Sidebar'
 import NoteList from './NoteList'
 import NoteForm from './NoteForm'
+import { throws } from 'assert';
 class Main extends React.Component {
     
         constructor() {
             super()
             this.state = {
                 currentNote: this.blankNote(),
-                notes: [
-                    {
-                        id: 1,
-                        title: 'Why I <3 JS',
-                        body: 'Because I like code, and JS is code.',
-                    },
-                    {
-                       id: 2,
-                       title: 'thoughts on breakfast',
-                       body: 'I love it!', 
-                    },
-                    {
-                     id: 3,
-                     title: 'Watching the first episode of Black Mirror with your parents',
-                     body: 'don\'t',   
-                    },
-                ]
+                notes: []                                        
                 
             }
         }
@@ -46,6 +31,22 @@ resetCurrentNote = () => {
     this.setCurrentNote(this.blankNote())
 } 
 
+
+saveNote = (note) => {
+    const notes = [...this.state.notes]
+
+    if(!note.id) {
+        note.id = Date.now()
+        notes.push(note)
+    } else {
+        const i = notes.findIndex(currentNote => currentNote.id === note.id )
+        notes[i] = note
+    }
+    
+    this.setState({ notes })
+    this.setCurrentNote(note)
+}
+
         render() {
             return (
             <div className="Main" style={style}>
@@ -54,7 +55,10 @@ resetCurrentNote = () => {
                     notes={this.state.notes} 
                     setCurrentNote={this.setCurrentNote}
                 />
-                <NoteForm currentNote={this.state.currentNote} />
+                <NoteForm 
+                    currentNote={this.state.currentNote}
+                    saveNote={this.saveNote} 
+                />
             </div>
         )
     }
