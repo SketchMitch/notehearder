@@ -3,7 +3,7 @@ import React from 'react'
 import Sidebar from './Sidebar'
 import NoteList from './NoteList'
 import NoteForm from './NoteForm'
-import { throws } from 'assert';
+// import { throws } from 'assert';
 class Main extends React.Component {
     
         constructor() {
@@ -47,6 +47,20 @@ saveNote = (note) => {
     this.setCurrentNote(note)
 }
 
+removeCurrentNote = () => {
+    const notes = [...this.state.notes]
+
+
+    const i = notes.findIndex(note => note.id === this.state.currentNote.id )
+    if (i > -1) {
+        notes.splice(i, 1) 
+        this.setState({ notes })
+
+    }
+
+    this.resetCurrentNote()
+}
+
         render() {
             return (
             <div className="Main" style={style}>
@@ -57,7 +71,8 @@ saveNote = (note) => {
                 />
                 <NoteForm 
                     currentNote={this.state.currentNote}
-                    saveNote={this.saveNote} 
+                    saveNote={this.saveNote}
+                    removeCurrentNote={this.removeCurrentNote}
                 />
             </div>
         )
