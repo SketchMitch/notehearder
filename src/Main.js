@@ -15,6 +15,14 @@ class Main extends React.Component {
             }
         }
 
+componentWillMount() {
+    const notes = JSON.parse(window.localStorage.getItem('notes'))
+    if (notes) {
+        this.setState({ notes })
+    }
+} 
+
+
 blankNote = () => {
     return {
         id: null,
@@ -45,16 +53,19 @@ saveNote = (note) => {
     
     this.setState({ notes })
     this.setCurrentNote(note)
+
+    window.localStorage.setItem('notes', JSON.stringify(notes))
 }
 
 removeCurrentNote = () => {
     const notes = [...this.state.notes]
 
-
     const i = notes.findIndex(note => note.id === this.state.currentNote.id )
     if (i > -1) {
         notes.splice(i, 1) 
         this.setState({ notes })
+        
+        window.localStorage.setItem('notes', JSON.stringify(notes))
 
     }
 
